@@ -1,12 +1,15 @@
 package com.shishir.quizapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.shishir.quizapp.ui.QuestionsActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +23,16 @@ class MainActivity : AppCompatActivity() {
         }
         val startBtn:Button= findViewById(R.id.btnStart)
         val editTextName:EditText= findViewById(R.id.name)
-
+        startBtn.setOnClickListener{
+            if(editTextName.text.isNotEmpty()){
+                Intent(this@MainActivity, QuestionsActivity::class.java).also {
+                    startActivity(it)
+                    finish()
+                }
+            }
+            else{
+                Toast.makeText(this@MainActivity,"Please Enter Your Name to Start", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
