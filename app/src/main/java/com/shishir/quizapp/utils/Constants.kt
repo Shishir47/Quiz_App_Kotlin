@@ -165,6 +165,26 @@ object Constants {
             2
         )
         questions.add(quest16)
+        val quest17= Questions(
+            17,
+            "What is the purpose of sorting algorithms?",
+            "To remove duplicates from a list.",
+            "To arrange elements in a specific order.",
+            "To merge multiple lists into one.",
+            "To search for an element in a list.",
+            1
+        )
+        questions.add(quest17)
+        val quest18= Questions(
+            18,
+            "What is the difference between a depth-first search (DFS) and a breadth-first search (BFS)?",
+            "DFS explores nodes level by level, BFS explores nodes depth by depth.",
+            "DFS uses a stack, BFS uses a queue.",
+            "DFS is used for trees, BFS is used for graphs.",
+            "DFS finds the shortest path, BFS does not.",
+            1
+        )
+        questions.add(quest18)
         return questions
     }
 }
