@@ -21,7 +21,6 @@ import com.shishir.quizapp.model.Questions
 import com.shishir.quizapp.utils.Constants
 import kotlinx.coroutines.selects.select
 import kotlin.random.Random
-//new
 class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
     private lateinit var progressBar:ProgressBar
     private lateinit var trackPro:TextView
