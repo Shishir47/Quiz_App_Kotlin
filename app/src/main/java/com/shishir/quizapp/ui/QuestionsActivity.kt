@@ -162,6 +162,7 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
                         opt4.background = ContextCompat.getDrawable(this, R.drawable.colorred)
                     }
                 }
+                
             }
             checkBtn.text = getString(R.string.next)
             showCorAns()
