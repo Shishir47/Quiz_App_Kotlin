@@ -13,8 +13,13 @@
         android:theme="@style/Theme.QuizApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Result_Activity"
+            android:exported="false"
+            android:theme="@style/Theme.QuizApp.NoActionBar"/>
+        <activity
             android:name=".ui.QuestionsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.QuizApp.NoActionBar"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

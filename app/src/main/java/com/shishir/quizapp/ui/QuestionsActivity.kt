@@ -1,5 +1,6 @@
 package com.shishir.quizapp.ui
 
+import android.content.Intent
 import android.graphics.BitmapFactory.Options
 import android.graphics.Color
 import android.graphics.Typeface
@@ -9,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -17,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.shishir.quizapp.R
 import com.shishir.quizapp.model.Questions
 import com.shishir.quizapp.utils.Constants
+import kotlinx.coroutines.selects.select
 import kotlin.random.Random
 
 class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
@@ -61,21 +64,26 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
         nxtQuestion()
     }
     private fun nxtQuestion(){
-        resetOptions()
-        val quest=questionsList[questionCounter-1]
-        progressBar.progress=questionCounter
-        trackPro.text="$questionCounter/${progressBar.max}"
-        question.text=quest.question
-        opt1.text=quest.option1
-        opt2.text=quest.option2
-        opt3.text=quest.option3
-        opt4.text=quest.option4
         if(questionCounter<questionsList.size){
             checkBtn.text=getString(R.string.check)
             currentQuest=questionsList[questionCounter]
+
+            resetOptions()
+            val quest=questionsList[questionCounter-1]
+            progressBar.progress=questionCounter
+            trackPro.text="$questionCounter/${progressBar.max}"
+            question.text=quest.question
+            opt1.text=quest.option1
+            opt2.text=quest.option2
+            opt3.text=quest.option3
+            opt4.text=quest.option4
         }
         else{
             checkBtn.text= getString(R.string.finish)
+            Intent(this@QuestionsActivity,Result_Activity::class.java).also {
+                startActivity(it)
+                finish()
+            }
         }
         questionCounter++
         answered=false
@@ -128,56 +136,60 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
 
     private fun checkAns() {
         answered=true
-        if(selectedAns == currentQuest.correctAns){
-            when(selectedAns){
-                1 ->{
-                    opt1.background= ContextCompat.getDrawable(this, R.drawable.correctborder)
-                }
-                2 ->{
-                    opt2.background= ContextCompat.getDrawable(this,R.drawable.correctborder)
-                }
-                3 ->{
-                    opt3.background= ContextCompat.getDrawable(this,R.drawable.correctborder)
-                }
-                4 ->{
-                    opt4.background= ContextCompat.getDrawable(this,R.drawable.correctborder)
+        if(selectedAns==0){
+            questionCounter--
+            nxtQuestion()
+            Toast.makeText(this@QuestionsActivity,"Please Select an Option!",Toast.LENGTH_SHORT).show()
+        }
+        else {
+            if (selectedAns == currentQuest.correctAns) {
+                showCorr()
+            } else {
+                when (selectedAns) {
+                    1 -> {
+                        opt1.background = ContextCompat.getDrawable(this, R.drawable.colorred)
+                    }
+
+                    2 -> {
+                        opt2.background = ContextCompat.getDrawable(this, R.drawable.colorred)
+                    }
+
+                    3 -> {
+                        opt3.background = ContextCompat.getDrawable(this, R.drawable.colorred)
+                    }
+
+                    4 -> {
+                        opt4.background = ContextCompat.getDrawable(this, R.drawable.colorred)
+                    }
                 }
             }
+            checkBtn.text = getString(R.string.next)
+            showCorAns()
         }
-        else{
-            when(selectedAns){
-                1 ->{
-                    opt1.background= ContextCompat.getDrawable(this, R.drawable.colorred)
-                }
-                2 ->{
-                    opt2.background= ContextCompat.getDrawable(this,R.drawable.colorred)
-                }
-                3 ->{
-                    opt3.background= ContextCompat.getDrawable(this,R.drawable.colorred)
-                }
-                4 ->{
-                    opt4.background= ContextCompat.getDrawable(this,R.drawable.colorred)
-                }
-            }
-        }
-        checkBtn.text= getString(R.string.next)
-        showCorAns()
     }
 
     private fun showCorAns() {
         selectedAns= currentQuest.correctAns
+        showCorr()
+    }
+
+    private fun showCorr() {
         when(selectedAns){
             1 ->{
                 opt1.background= ContextCompat.getDrawable(this, R.drawable.correctborder)
+                opt1.setTextColor(Color.WHITE)
             }
             2 ->{
                 opt2.background= ContextCompat.getDrawable(this,R.drawable.correctborder)
+                opt2.setTextColor(Color.WHITE)
             }
             3 ->{
                 opt3.background= ContextCompat.getDrawable(this,R.drawable.correctborder)
+                opt3.setTextColor(Color.WHITE)
             }
             4 ->{
                 opt4.background= ContextCompat.getDrawable(this,R.drawable.correctborder)
+                opt4.setTextColor(Color.WHITE)
             }
         }
     }
