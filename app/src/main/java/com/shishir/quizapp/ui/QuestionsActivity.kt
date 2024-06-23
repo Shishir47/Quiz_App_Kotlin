@@ -21,7 +21,6 @@ import com.shishir.quizapp.model.Questions
 import com.shishir.quizapp.utils.Constants
 import kotlinx.coroutines.selects.select
 import kotlin.random.Random
-
 class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
     private lateinit var progressBar:ProgressBar
     private lateinit var trackPro:TextView
@@ -168,6 +167,7 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
                         opt4.background = ContextCompat.getDrawable(this, R.drawable.colorred)
                     }
                 }
+
             }
             checkBtn.text = getString(R.string.next)
             showCorAns()
