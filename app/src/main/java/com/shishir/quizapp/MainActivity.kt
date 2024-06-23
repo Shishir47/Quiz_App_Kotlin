@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.shishir.quizapp.ui.QuestionsActivity
+import com.shishir.quizapp.utils.Constants
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         startBtn.setOnClickListener{
             if(editTextName.text.isNotEmpty()){
                 Intent(this@MainActivity, QuestionsActivity::class.java).also {
+                    it.putExtra(Constants.USERNAME,editTextName.text.toString())
                     startActivity(it)
                     finish()
                 }

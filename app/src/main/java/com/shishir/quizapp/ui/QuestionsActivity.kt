@@ -36,6 +36,7 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
     private lateinit var checkBtn: Button
     private lateinit var currentQuest: Questions
     private var answered=false
+    private lateinit var userName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,11 +63,15 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
         checkBtn.setOnClickListener(this)
         questionsList= Constants.getQuestions()
         nxtQuestion()
+        if(intent.hasExtra(Constants.USERNAME)){
+            userName=intent.getStringExtra(Constants.USERNAME)!!
+        }
     }
     private fun nxtQuestion(){
+        //Some Error here (Only 17 questions are loading instead of 18
         if(questionCounter<questionsList.size){
             checkBtn.text=getString(R.string.check)
-            currentQuest=questionsList[questionCounter]
+            currentQuest=questionsList[questionCounter-1]
 
             resetOptions()
             val quest=questionsList[questionCounter-1]
@@ -81,6 +86,7 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
         else{
             checkBtn.text= getString(R.string.finish)
             Intent(this@QuestionsActivity,Result_Activity::class.java).also {
+                it.putExtra(Constants.USERNAME, userName)
                 startActivity(it)
                 finish()
             }

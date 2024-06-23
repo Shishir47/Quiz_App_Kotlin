@@ -3,6 +3,7 @@ package com.shishir.quizapp.utils
 import com.shishir.quizapp.model.Questions
 
 object Constants {
+    const val USERNAME="username"
     fun getQuestions(): MutableList<Questions>{
         val questions= mutableListOf<Questions>()
         val quest1= Questions(
