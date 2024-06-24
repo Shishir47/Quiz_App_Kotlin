@@ -36,6 +36,7 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
     private lateinit var currentQuest: Questions
     private var answered=false
     private lateinit var userName: String
+    private var score=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +87,8 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
             checkBtn.text= getString(R.string.finish)
             Intent(this@QuestionsActivity,Result_Activity::class.java).also {
                 it.putExtra(Constants.USERNAME, userName)
+                it.putExtra(Constants.SCORE, score.toString())
+                it.putExtra(Constants.TOTALQUEST, questionCounter.toString())
                 startActivity(it)
                 finish()
             }
@@ -148,6 +151,7 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
         }
         else {
             if (selectedAns == currentQuest.correctAns) {
+                score++
                 showCorr()
             } else {
                 when (selectedAns) {

@@ -4,6 +4,8 @@ import com.shishir.quizapp.model.Questions
 
 object Constants {
     const val USERNAME="username"
+    const val SCORE="score"
+    const val TOTALQUEST="totalquest"
     fun getQuestions(): MutableList<Questions>{
         val questions= mutableListOf<Questions>()
         val quest1= Questions(
