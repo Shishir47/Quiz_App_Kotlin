@@ -20,7 +20,9 @@ import com.shishir.quizapp.R
 import com.shishir.quizapp.model.Questions
 import com.shishir.quizapp.utils.Constants
 import kotlinx.coroutines.selects.select
+import java.util.LinkedList
 import kotlin.random.Random
+
 class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
     private lateinit var progressBar:ProgressBar
     private lateinit var trackPro:TextView
@@ -37,6 +39,7 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
     private var answered=false
     private lateinit var userName: String
     private var score=0
+    private val askedQuestions= mutableListOf<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,19 +65,26 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
         opt4.setOnClickListener(this)
         checkBtn.setOnClickListener(this)
         questionsList= Constants.getQuestions()
+        askedQuestions.add(0)
         nxtQuestion()
         if(intent.hasExtra(Constants.USERNAME)){
             userName=intent.getStringExtra(Constants.USERNAME)!!
         }
+
     }
     private fun nxtQuestion(){
         //Some Error here (Only 17 questions are loading instead of 18
-        if(questionCounter<questionsList.size){
+        val randomQuestion= Random.nextInt(1, questionsList.size)
+        if(askedQuestions.contains(randomQuestion)){
+            nxtQuestion()
+        }
+        askedQuestions.add(randomQuestion)
+        if(questionCounter<=5){
             checkBtn.text=getString(R.string.check)
-            currentQuest=questionsList[questionCounter-1]
+            currentQuest=questionsList[randomQuestion]
 
             resetOptions()
-            val quest=questionsList[questionCounter-1]
+            val quest=questionsList[randomQuestion]
             progressBar.progress=questionCounter
             trackPro.text="$questionCounter/${progressBar.max}"
             question.text=quest.question
@@ -88,7 +98,7 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
             Intent(this@QuestionsActivity,Result_Activity::class.java).also {
                 it.putExtra(Constants.USERNAME, userName)
                 it.putExtra(Constants.SCORE, score.toString())
-                it.putExtra(Constants.TOTALQUEST, questionCounter.toString())
+                it.putExtra(Constants.TOTALQUEST, (questionCounter-1).toString())
                 startActivity(it)
                 finish()
             }
