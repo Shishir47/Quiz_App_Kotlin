@@ -73,7 +73,7 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
 
     }
     private fun nxtQuestion(){
-        //Some Error here (Only 17 questions are loading instead of 18
+        //Some Error here (Only 17 questions are loading instead of 18) Fixed!
         val randomQuestion= Random.nextInt(1, questionsList.size)
         if(askedQuestions.contains(randomQuestion)){
             nxtQuestion()
@@ -92,6 +92,7 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
             opt2.text=quest.option2
             opt3.text=quest.option3
             opt4.text=quest.option4
+            questionCounter++
         }
         else{
             checkBtn.text= getString(R.string.finish)
@@ -103,7 +104,6 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
                 finish()
             }
         }
-        questionCounter++
         answered=false
     }
     private fun resetOptions(){
@@ -155,8 +155,6 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
     private fun checkAns() {
         answered=true
         if(selectedAns==0){
-            questionCounter--
-            nxtQuestion()
             Toast.makeText(this@QuestionsActivity,"Please Select an Option!",Toast.LENGTH_SHORT).show()
         }
         else {

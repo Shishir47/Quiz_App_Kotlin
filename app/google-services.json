@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "768290369016",
+    "project_id": "quiz-app-afa6d",
+    "storage_bucket": "quiz-app-afa6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768290369016:android:d2c89c15f19767acf67a0d",
+        "android_client_info": {
+          "package_name": "com.shishir.quizapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtywp24xWUKs3ZDAjDwiLE8uRvmS_B6ac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
