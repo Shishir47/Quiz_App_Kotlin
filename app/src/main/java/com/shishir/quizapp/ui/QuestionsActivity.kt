@@ -73,7 +73,7 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
 
     }
     private fun nxtQuestion(){
-        //Some Error here (Only 17 questions are loading instead of 18) Fixed!
+        //Some Error here (Only 17 questions are loading instead of 18) Fixed it was error for decrementing!
         val randomQuestion= Random.nextInt(1, questionsList.size)
         if(askedQuestions.contains(randomQuestion)){
             nxtQuestion()
