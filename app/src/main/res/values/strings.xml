@@ -18,4 +18,6 @@
     <string name="username">Username</string>
     <string name="your_score_is_9_out_of_10">Your Score is 9 out of 10</string>
     <string name="categories">CATEGORIES</string>
+    <string name="submission_successfully">Submission Successfully</string>
+    <string name="error_submission_failed">Error Submission Failed!</string>
 </resources>

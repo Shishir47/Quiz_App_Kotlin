@@ -16,6 +16,7 @@ import com.shishir.quizapp.utils.Constants
 class Result_Activity : AppCompatActivity() {
     private lateinit var uName: TextView
     private lateinit var score: TextView
+    private lateinit var submission: TextView
     private lateinit var finish: Button
     private val CANDIDATENAME="CANDIDATE NAME"
     private val CANDIDATESCORE="TOTAL SCORE"
@@ -33,6 +34,7 @@ class Result_Activity : AppCompatActivity() {
         uName= findViewById(R.id.uname)
         score= findViewById(R.id.score)
         finish= findViewById(R.id.resultBtn)
+        submission= findViewById(R.id.submission)
         if(intent.hasExtra(Constants.USERNAME)){
             uName.text=intent.getStringExtra(Constants.USERNAME)!!
         }
@@ -53,10 +55,9 @@ class Result_Activity : AppCompatActivity() {
 
         db.collection("Candidate_Data").document().set(saveData)
             .addOnSuccessListener {
-                Toast.makeText(this@Result_Activity, "Submission Successfully", Toast.LENGTH_SHORT).show()
+                submission.text= getString(R.string.submission_successfully)
             }.addOnFailureListener{ e ->
-                Log.e("errorSavingData", "Error saving data", e)
-                Toast.makeText(this@Result_Activity, "Error Submission Failed!", Toast.LENGTH_SHORT).show()
+                submission.text= getString(R.string.error_submission_failed)
             }
     }
 }

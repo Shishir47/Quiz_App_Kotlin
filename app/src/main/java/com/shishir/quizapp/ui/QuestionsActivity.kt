@@ -98,7 +98,10 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             opt3.text = quest.option3
             opt4.text = quest.option4
             questionCounter++
+            startTimer()
         } else {
+            countDownTimer?.cancel()
+            countDownTimer = null
             Intent(this@QuestionsActivity, Result_Activity::class.java).also {
                 it.putExtra(Constants.USERNAME, userName)
                 it.putExtra(Constants.SCORE, score.toString())
@@ -108,7 +111,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         answered = false
-        startTimer()
     }
 
     private fun startTimer() {
