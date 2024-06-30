@@ -24,23 +24,23 @@ import kotlinx.coroutines.selects.select
 import java.util.LinkedList
 import kotlin.random.Random
 
-class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
-    private lateinit var progressBar:ProgressBar
-    private lateinit var trackPro:TextView
+class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
+    private lateinit var progressBar: ProgressBar
+    private lateinit var trackPro: TextView
     private lateinit var question: TextView
     private lateinit var opt1: TextView
     private lateinit var opt2: TextView
     private lateinit var opt3: TextView
     private lateinit var opt4: TextView
-    private var questionCounter= 1
+    private var questionCounter = 1
     private lateinit var questionsList: MutableList<Questions>
-    private var selectedAns=0
+    private var selectedAns = 0
     private lateinit var checkBtn: Button
     private lateinit var currentQuest: Questions
-    private var answered=false
+    private var answered = false
     private lateinit var userName: String
-    private var score=0
-    private val askedQuestions= mutableListOf<Int>()
+    private var score = 0
+    private val askedQuestions = mutableListOf<Int>()
     private lateinit var questionsTimer: TextView
     private var countDownTimer: CountDownTimer? = null
 
@@ -53,66 +53,67 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        checkBtn= findViewById(R.id.check)
-        progressBar=findViewById(R.id.progressBar)
-        trackPro=findViewById(R.id.trackPro)
-        question=findViewById(R.id.questionTest)
-        opt1=findViewById(R.id.opt1)
-        opt2=findViewById(R.id.opt2)
-        opt3=findViewById(R.id.opt3)
-        opt4=findViewById(R.id.opt4)
-        questionsTimer= findViewById(R.id.questionTimer)
+        checkBtn = findViewById(R.id.check)
+        progressBar = findViewById(R.id.progressBar)
+        trackPro = findViewById(R.id.trackPro)
+        question = findViewById(R.id.questionTest)
+        opt1 = findViewById(R.id.opt1)
+        opt2 = findViewById(R.id.opt2)
+        opt3 = findViewById(R.id.opt3)
+        opt4 = findViewById(R.id.opt4)
+        questionsTimer = findViewById(R.id.questionTimer)
         opt1.setOnClickListener(this)
         opt2.setOnClickListener(this)
         opt3.setOnClickListener(this)
         opt4.setOnClickListener(this)
         checkBtn.setOnClickListener(this)
-        questionsList= Constants.getQuestions()
+        questionsList = Constants.getQuestions()
         askedQuestions.add(0)
         nxtQuestion()
-        if(intent.hasExtra(Constants.USERNAME)){
-            userName=intent.getStringExtra(Constants.USERNAME)!!
+        if (intent.hasExtra(Constants.USERNAME)) {
+            userName = intent.getStringExtra(Constants.USERNAME)!!
         }
 
     }
-    private fun nxtQuestion(){
+
+    private fun nxtQuestion() {
         countDownTimer?.cancel()
-        countDownTimer=null
-        val randomQuestion= Random.nextInt(1, questionsList.size)
-        if(askedQuestions.contains(randomQuestion)){
+        countDownTimer = null
+        val randomQuestion = Random.nextInt(1, questionsList.size)
+        if (askedQuestions.contains(randomQuestion)) {
             nxtQuestion()
         }
         askedQuestions.add(randomQuestion)
-        if(questionCounter<=5){
-            checkBtn.text=getString(R.string.check)
-            currentQuest=questionsList[randomQuestion]
+        if (questionCounter <= 5) {
+            checkBtn.text = getString(R.string.check)
+            currentQuest = questionsList[randomQuestion]
 
             resetOptions()
-            val quest=questionsList[randomQuestion]
-            progressBar.progress=questionCounter
-            trackPro.text="$questionCounter/${progressBar.max}"
-            question.text=quest.question
-            opt1.text=quest.option1
-            opt2.text=quest.option2
-            opt3.text=quest.option3
-            opt4.text=quest.option4
+            val quest = questionsList[randomQuestion]
+            progressBar.progress = questionCounter
+            trackPro.text = "$questionCounter/${progressBar.max}"
+            question.text = quest.question
+            opt1.text = quest.option1
+            opt2.text = quest.option2
+            opt3.text = quest.option3
+            opt4.text = quest.option4
             questionCounter++
-        }
-        else{
-            Intent(this@QuestionsActivity,Result_Activity::class.java).also {
+        } else {
+            Intent(this@QuestionsActivity, Result_Activity::class.java).also {
                 it.putExtra(Constants.USERNAME, userName)
                 it.putExtra(Constants.SCORE, score.toString())
-                it.putExtra(Constants.TOTALQUEST, (questionCounter-1).toString())
+                it.putExtra(Constants.TOTALQUEST, (questionCounter - 1).toString())
                 startActivity(it)
                 finish()
             }
         }
-        answered=false
+        answered = false
         startTimer()
     }
+
     private fun startTimer() {
-        if(countDownTimer== null) {
-            countDownTimer= object : CountDownTimer(11000, 1000) {
+        if (countDownTimer == null) {
+            countDownTimer = object : CountDownTimer(11000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     questionsTimer.text = "Time Left: ${millisUntilFinished / 1000}"
                 }
@@ -124,58 +125,64 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
         }
 
     }
-    private fun resetOptions(){
-        val options= mutableListOf<TextView>()
+
+    private fun resetOptions() {
+        val options = mutableListOf<TextView>()
         options.add(opt1)
         options.add(opt2)
         options.add(opt3)
         options.add(opt4)
 
-        for(option in options){
+        for (option in options) {
             option.setTextColor(Color.parseColor("#7A8089"))
-            option.typeface= Typeface.DEFAULT
-            option.background= ContextCompat.getDrawable(this, R.drawable.optionborder)
+            option.typeface = Typeface.DEFAULT
+            option.background = ContextCompat.getDrawable(this, R.drawable.optionborder)
         }
     }
-    private fun selectedOptn(txtView:TextView, SelectOptNum:Int){
+
+    private fun selectedOptn(txtView: TextView, SelectOptNum: Int) {
         resetOptions()
-        selectedAns=SelectOptNum
+        selectedAns = SelectOptNum
         txtView.setTextColor(Color.parseColor("#363A43"))
         txtView.setTypeface(txtView.typeface, Typeface.BOLD)
-        txtView.background= ContextCompat.getDrawable(this, R.drawable.selectedborder)
+        txtView.background = ContextCompat.getDrawable(this, R.drawable.selectedborder)
     }
+
     override fun onClick(view: View?) {
-        when(view?.id){
+        when (view?.id) {
             R.id.opt1 -> {
-                selectedOptn(opt1,1)
+                selectedOptn(opt1, 1)
             }
+
             R.id.opt2 -> {
-                selectedOptn(opt2,2)
+                selectedOptn(opt2, 2)
             }
+
             R.id.opt3 -> {
-                selectedOptn(opt3,3)
+                selectedOptn(opt3, 3)
             }
+
             R.id.opt4 -> {
                 selectedOptn(opt4, 4)
             }
+
             R.id.check -> {
-                if(!answered){
+                if (!answered) {
                     checkAns()
-                }
-                else{
+                } else {
                     nxtQuestion()
                 }
-                selectedAns=0
+                selectedAns = 0
             }
         }
     }
 
     private fun checkAns() {
-        answered=true
-        if(selectedAns==0){
-            Toast.makeText(this@QuestionsActivity,"Please Select an Option!",Toast.LENGTH_SHORT).show()
-        }
-        else {
+        answered = true
+        if (selectedAns == 0) {
+            Toast.makeText(this@QuestionsActivity, "Please Select an Option!", Toast.LENGTH_SHORT)
+                .show()
+        } else {
             if (selectedAns == currentQuest.correctAns) {
                 score++
                 showCorr()
@@ -205,26 +212,29 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
     }
 
     private fun showCorAns() {
-        selectedAns= currentQuest.correctAns
+        selectedAns = currentQuest.correctAns
         showCorr()
     }
 
     private fun showCorr() {
-        when(selectedAns){
-            1 ->{
-                opt1.background= ContextCompat.getDrawable(this, R.drawable.correctborder)
+        when (selectedAns) {
+            1 -> {
+                opt1.background = ContextCompat.getDrawable(this, R.drawable.correctborder)
                 opt1.setTextColor(Color.WHITE)
             }
-            2 ->{
-                opt2.background= ContextCompat.getDrawable(this,R.drawable.correctborder)
+
+            2 -> {
+                opt2.background = ContextCompat.getDrawable(this, R.drawable.correctborder)
                 opt2.setTextColor(Color.WHITE)
             }
-            3 ->{
-                opt3.background= ContextCompat.getDrawable(this,R.drawable.correctborder)
+
+            3 -> {
+                opt3.background = ContextCompat.getDrawable(this, R.drawable.correctborder)
                 opt3.setTextColor(Color.WHITE)
             }
-            4 ->{
-                opt4.background= ContextCompat.getDrawable(this,R.drawable.correctborder)
+
+            4 -> {
+                opt4.background = ContextCompat.getDrawable(this, R.drawable.correctborder)
                 opt4.setTextColor(Color.WHITE)
             }
         }
