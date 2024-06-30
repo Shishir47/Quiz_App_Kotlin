@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory.Options
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -40,6 +41,8 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
     private lateinit var userName: String
     private var score=0
     private val askedQuestions= mutableListOf<Int>()
+    private lateinit var questionsTimer: TextView
+    private var countDownTimer: CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +61,7 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
         opt2=findViewById(R.id.opt2)
         opt3=findViewById(R.id.opt3)
         opt4=findViewById(R.id.opt4)
-
+        questionsTimer= findViewById(R.id.questionTimer)
         opt1.setOnClickListener(this)
         opt2.setOnClickListener(this)
         opt3.setOnClickListener(this)
@@ -73,7 +76,8 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
 
     }
     private fun nxtQuestion(){
-        //Some Error here (Only 17 questions are loading instead of 18) Fixed it was error for decrementing!
+        countDownTimer?.cancel()
+        countDownTimer=null
         val randomQuestion= Random.nextInt(1, questionsList.size)
         if(askedQuestions.contains(randomQuestion)){
             nxtQuestion()
@@ -95,7 +99,6 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
             questionCounter++
         }
         else{
-            checkBtn.text= getString(R.string.finish)
             Intent(this@QuestionsActivity,Result_Activity::class.java).also {
                 it.putExtra(Constants.USERNAME, userName)
                 it.putExtra(Constants.SCORE, score.toString())
@@ -105,6 +108,21 @@ class QuestionsActivity : AppCompatActivity() , View.OnClickListener{
             }
         }
         answered=false
+        startTimer()
+    }
+    private fun startTimer() {
+        if(countDownTimer== null) {
+            countDownTimer= object : CountDownTimer(11000, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    questionsTimer.text = "Time Left: ${millisUntilFinished / 1000}"
+                }
+
+                override fun onFinish() {
+                    nxtQuestion()
+                }
+            }.start()
+        }
+
     }
     private fun resetOptions(){
         val options= mutableListOf<TextView>()

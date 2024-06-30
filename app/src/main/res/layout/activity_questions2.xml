@@ -5,64 +5,30 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.QuestionsActivity">
+    tools:context=".ui.Questions_activity"
+    android:background="@drawable/bg">
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:gravity="center_horizontal"
         android:layout_gravity="center"
-        android:padding="16dp">
+        android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/questionTest"
-            android:textSize="25sp"
-            android:textStyle="normal"
-            tools:text="What Country Does This Flag Belong To?"
-            android:gravity="center" />
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="10"
-            android:layout_marginTop="15dp"
-            android:gravity="center">
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="9"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:max="20"
-                android:minHeight="50dp"
-                android:indeterminate="false"
-                tools:progress="7"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/trackPro"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:text="@string/_0_20"
-                android:layout_marginStart="5dp"
-                android:layout_gravity="center_vertical"/>
-        </androidx.appcompat.widget.LinearLayoutCompat>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/questionTimer"
-            android:textSize="20sp"
+            android:textSize="35sp"
+            android:textColor="@color/white"
+            android:gravity="center"
             android:textStyle="bold"
-            tools:text="Timer"
-            android:gravity="center"
-            android:layout_marginBottom="15dp" />
+            android:text="@string/categories"
+            android:layout_marginBottom="30dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/opt1"
-            android:textSize="20sp"
+            android:id="@+id/fsa"
+            android:textSize="22sp"
             android:textStyle="normal"
-            android:text="@string/option_1"
+            android:text="Data Structure"
             android:gravity="center"
             android:background="@drawable/optionborder"
             android:layout_marginTop="15dp"
@@ -71,10 +37,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/opt2"
-            android:textSize="20sp"
+            android:id="@+id/algorithms"
+            android:textSize="22sp"
             android:textStyle="normal"
-            android:text="@string/option_2"
+            android:text="Algorithms"
             android:gravity="center"
             android:background="@drawable/optionborder"
             android:layout_marginTop="15dp"
@@ -83,10 +49,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/opt3"
-            android:textSize="20sp"
+            android:id="@+id/msa"
+            android:textSize="22sp"
             android:textStyle="normal"
-            android:text="@string/option_3"
+            android:text="Data Structure"
             android:gravity="center"
             android:background="@drawable/optionborder"
             android:layout_marginTop="15dp"
@@ -95,21 +61,39 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/opt4"
-            android:textSize="20sp"
+            android:id="@+id/qsa"
+            android:textSize="22sp"
             android:textStyle="normal"
-            android:text="@string/option_4"
+            android:text="Data Structure"
             android:gravity="center"
             android:background="@drawable/optionborder"
             android:layout_marginTop="15dp"
             android:minHeight="50dp"
             android:textColor="#6F6F6F"/>
-        <Button
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/check"
-            android:text="@string/check"
+            android:id="@+id/dsjha"
+            android:textSize="22sp"
+            android:textStyle="normal"
+            android:text="Data Structure"
+            android:gravity="center"
+            android:background="@drawable/optionborder"
             android:layout_marginTop="15dp"
-            android:minHeight="50dp"/>
+            android:minHeight="50dp"
+            android:textColor="#6F6F6F"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dsaa"
+            android:textSize="22sp"
+            android:textStyle="normal"
+            android:text="Data Structure"
+            android:gravity="center"
+            android:background="@drawable/optionborder"
+            android:layout_marginTop="15dp"
+            android:minHeight="50dp"
+            android:textColor="#6F6F6F"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 </androidx.core.widget.NestedScrollView>
