@@ -1260,9 +1260,9 @@ object Constants {
     }
 
     fun getRandomQuestion(): Questions {
-        val randomCategory = Random.nextInt(1, 6)  // Random number between 1 and 5
+        val randomCategory = Random.nextInt(1, 6)
         val randomQuestionIndex =
-            Random.nextInt(1, 22)  // Random number between 1 and 22 (inclusive)
+            Random.nextInt(1, 22)
 
         val questionsList = when (randomCategory) {
             1 -> Constants.getbasicQuestions()
