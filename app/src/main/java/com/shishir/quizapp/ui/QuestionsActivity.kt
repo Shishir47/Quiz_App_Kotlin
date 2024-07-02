@@ -43,6 +43,11 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private val askedQuestions = mutableListOf<Int>()
     private lateinit var questionsTimer: TextView
     private var countDownTimer: CountDownTimer? = null
+    private var categorySelector: String = "0"
+    private var questionStarting: Int = 0
+    private var questionsEnding: Int = 0
+    private lateinit var categoryQst: TextView
+    private var countTotal: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,34 +67,71 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         opt3 = findViewById(R.id.opt3)
         opt4 = findViewById(R.id.opt4)
         questionsTimer = findViewById(R.id.questionTimer)
+        categoryQst = findViewById(R.id.category)
         opt1.setOnClickListener(this)
         opt2.setOnClickListener(this)
         opt3.setOnClickListener(this)
         opt4.setOnClickListener(this)
         checkBtn.setOnClickListener(this)
-        questionsList = Constants.getQuestions()
         askedQuestions.add(0)
-        nxtQuestion()
         if (intent.hasExtra(Constants.USERNAME)) {
             userName = intent.getStringExtra(Constants.USERNAME)!!
         }
+        categorySelector = intent.getStringExtra(Constants.CATEGORYSELCTOR)!!
+        if (categorySelector == "1") {
+            questionsList = Constants.getbasicQuestions()
+            questionStarting = 1
+            questionsEnding = 22
+            categoryQst.text = "Basic"
+        } else if (categorySelector == "2") {
+            questionsList = Constants.getdsQuestions()
+            questionStarting = 1
+            questionsEnding = 22
+            categoryQst.text = "Data Structure"
+        } else if (categorySelector == "3") {
+            questionsList = Constants.getalgorithmQuestions()
+            questionStarting = 1
+            questionsEnding = 22
+            categoryQst.text = "Algorithm"
+        } else if (categorySelector == "4") {
+            questionsList = Constants.getseQuestions()
+            questionStarting = 1
+            questionsEnding = 22
+            categoryQst.text = "Object Oriented Programming"
+        } else if (categorySelector == "5") {
+            questionsList = Constants.getdbQuestions()
+            questionStarting = 1
+            questionsEnding = 22
+            categoryQst.text = "Database"
+        } else {
+            questionsList = Constants.getRandQuest()
+            questionStarting = 1
+            questionsEnding = 22
+            categoryQst.text = "Random Pick"
+        }
+        nxtQuestion()
+    }
 
+    private fun gRand(qS: Int, qE: Int): Int {
+        val randomQuestion = Random.nextInt(qS, qE)
+        return randomQuestion
     }
 
     private fun nxtQuestion() {
         countDownTimer?.cancel()
         countDownTimer = null
-        val randomQuestion = Random.nextInt(1, questionsList.size)
-        if (askedQuestions.contains(randomQuestion)) {
-            nxtQuestion()
-        }
+        var randomQuestion = 0
+        do {
+            randomQuestion = gRand(questionStarting, questionsEnding)
+        } while (askedQuestions.contains(randomQuestion))
+
         askedQuestions.add(randomQuestion)
-        if (questionCounter <= 5) {
+        if (questionCounter <= 20) {
             checkBtn.text = getString(R.string.check)
             currentQuest = questionsList[randomQuestion]
 
             resetOptions()
-            val quest = questionsList[randomQuestion]
+            val quest = currentQuest
             progressBar.progress = questionCounter
             trackPro.text = "$questionCounter/${progressBar.max}"
             question.text = quest.question

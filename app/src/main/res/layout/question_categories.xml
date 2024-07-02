@@ -5,95 +5,109 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Questions_Categories"
-    android:background="@drawable/bg">
+    android:background="@drawable/bg"
+    tools:context=".ui.Questions_Categories">
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
-            android:textColor="@color/white"
+            android:layout_marginBottom="30dp"
             android:gravity="center"
-            android:textStyle="bold"
             android:text="@string/categories"
-            android:layout_marginBottom="30dp"/>
-        <TextView
-            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/basic"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:id="@+id/fsa"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_button_background"
+            android:gravity="center"
+            android:minHeight="50dp"
+            android:padding="10dp"
+            android:text="Basic"
+            android:textColor="@color/white"
             android:textSize="22sp"
-            android:textStyle="normal"
+            android:textStyle="normal" />
+
+        <Button
+            android:id="@+id/ds"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_button_background"
+            android:gravity="center"
+            android:minHeight="50dp"
+            android:padding="10dp"
             android:text="Data Structure"
-            android:gravity="center"
-            android:background="@drawable/optionborder"
-            android:layout_marginTop="15dp"
-            android:minHeight="50dp"
-            android:textColor="#6F6F6F"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/algorithms"
+            android:textColor="@color/white"
             android:textSize="22sp"
-            android:textStyle="normal"
-            android:text="Algorithms"
-            android:gravity="center"
-            android:background="@drawable/optionborder"
-            android:layout_marginTop="15dp"
-            android:minHeight="50dp"
-            android:textColor="#6F6F6F"/>
-        <TextView
-            android:layout_width="match_parent"
+            android:textStyle="normal" />
+
+        <Button
+            android:id="@+id/algorithm"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:id="@+id/msa"
-            android:textSize="22sp"
-            android:textStyle="normal"
-            android:text="Data Structure"
-            android:gravity="center"
-            android:background="@drawable/optionborder"
             android:layout_marginTop="15dp"
+            android:background="@drawable/custom_button_background"
+            android:gravity="center"
             android:minHeight="50dp"
-            android:textColor="#6F6F6F"/>
-        <TextView
-            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:text="Algorithm"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="normal" />
+
+        <Button
+            android:id="@+id/oop"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:id="@+id/qsa"
-            android:textSize="22sp"
-            android:textStyle="normal"
-            android:text="Data Structure"
-            android:gravity="center"
-            android:background="@drawable/optionborder"
             android:layout_marginTop="15dp"
+            android:background="@drawable/custom_button_background"
+            android:gravity="center"
             android:minHeight="50dp"
-            android:textColor="#6F6F6F"/>
-        <TextView
-            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:text="Object Oriented Programming"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="normal" />
+
+        <Button
+            android:id="@+id/db"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:id="@+id/dsjha"
-            android:textSize="22sp"
-            android:textStyle="normal"
-            android:text="Data Structure"
-            android:gravity="center"
-            android:background="@drawable/optionborder"
             android:layout_marginTop="15dp"
+            android:background="@drawable/custom_button_background"
+            android:gravity="center"
             android:minHeight="50dp"
-            android:textColor="#6F6F6F"/>
-        <TextView
-            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:text="Database"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="normal" />
+
+        <Button
+            android:id="@+id/random"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:id="@+id/dsaa"
-            android:textSize="22sp"
-            android:textStyle="normal"
-            android:text="Data Structure"
-            android:gravity="center"
-            android:background="@drawable/optionborder"
             android:layout_marginTop="15dp"
+            android:background="@drawable/custom_button_background"
+            android:gravity="center"
             android:minHeight="50dp"
-            android:textColor="#6F6F6F"/>
+            android:padding="10dp"
+            android:text="Random Pick"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="normal" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.core.widget.NestedScrollView>
