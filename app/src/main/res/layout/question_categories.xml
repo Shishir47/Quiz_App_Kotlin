@@ -27,7 +27,7 @@
 
         <Button
             android:id="@+id/basic"
-            android:layout_width="380dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/custom_button_background"
@@ -36,12 +36,12 @@
             android:padding="10dp"
             android:text="Basic"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="normal" />
 
         <Button
             android:id="@+id/ds"
-            android:layout_width="380dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/custom_button_background"
@@ -50,12 +50,12 @@
             android:padding="10dp"
             android:text="Data Structure"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="normal" />
 
         <Button
             android:id="@+id/algorithm"
-            android:layout_width="380dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/custom_button_background"
@@ -64,12 +64,12 @@
             android:padding="10dp"
             android:text="Algorithm"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="normal" />
 
         <Button
             android:id="@+id/oop"
-            android:layout_width="380dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/custom_button_background"
@@ -78,12 +78,12 @@
             android:padding="10dp"
             android:text="Object Oriented Programming"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="normal" />
 
         <Button
             android:id="@+id/db"
-            android:layout_width="380dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/custom_button_background"
@@ -92,12 +92,12 @@
             android:padding="10dp"
             android:text="Database"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="normal" />
 
         <Button
             android:id="@+id/random"
-            android:layout_width="380dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/custom_button_background"
@@ -106,7 +106,7 @@
             android:padding="10dp"
             android:text="Random Pick"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="normal" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
