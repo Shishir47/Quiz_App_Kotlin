@@ -56,7 +56,7 @@ class Result_Activity : AppCompatActivity() {
         saveData.put(CANDIDATENAME, uNameData)
         saveData.put(CANDIDATESCORE, scoreTotal)
 
-        db.collection("Candidate_Data").document().set(saveData)
+        db.collection("Candidate_Data").document(uName.text.toString()).set(saveData)
             .addOnSuccessListener {
                 submission.text = getString(R.string.submission_successfully)
             }.addOnFailureListener { e ->
