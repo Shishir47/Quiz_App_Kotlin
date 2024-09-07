@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".ui.Questions_Categories">
+    tools:context=".ui.Difficulties_Menu">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -20,13 +20,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:gravity="center"
-            android:text="Select Category"
+            android:text="@string/categories"
             android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/basic"
+            android:id="@+id/newbie"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -34,13 +34,13 @@
             android:gravity="center"
             android:minHeight="50dp"
             android:padding="10dp"
-            android:text="Basic"
+            android:text="Newbie"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="normal" />
 
         <Button
-            android:id="@+id/ds"
+            android:id="@+id/amature"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -48,13 +48,13 @@
             android:gravity="center"
             android:minHeight="50dp"
             android:padding="10dp"
-            android:text="Data Structure"
+            android:text="Amature"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="normal" />
 
         <Button
-            android:id="@+id/algorithm"
+            android:id="@+id/expert"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -62,13 +62,13 @@
             android:gravity="center"
             android:minHeight="50dp"
             android:padding="10dp"
-            android:text="Algorithm"
+            android:text="Expert"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="normal" />
 
         <Button
-            android:id="@+id/oop"
+            android:id="@+id/master"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -76,13 +76,13 @@
             android:gravity="center"
             android:minHeight="50dp"
             android:padding="10dp"
-            android:text="Object Oriented Programming"
+            android:text="Master"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="normal" />
 
         <Button
-            android:id="@+id/db"
+            android:id="@+id/grandmaster"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -90,24 +90,9 @@
             android:gravity="center"
             android:minHeight="50dp"
             android:padding="10dp"
-            android:text="Database"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="normal" />
-
-        <Button
-            android:id="@+id/random"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/custom_button_background"
-            android:gravity="center"
-            android:minHeight="50dp"
-            android:padding="10dp"
-            android:text="Random Pick"
+            android:text="Grandmaster"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="normal" />
     </androidx.appcompat.widget.LinearLayoutCompat>
-
 </androidx.core.widget.NestedScrollView>

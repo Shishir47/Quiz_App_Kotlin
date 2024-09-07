@@ -8,6 +8,8 @@ object Constants {
     const val SCORE = "score"
     const val TOTALQUEST = "totalquest"
     const val CATEGORYSELCTOR = "categoryselector"
+    const val DIFFSELECTOR = "difficultyselector"
+    const val TIMESELCTOR = "categoryselector"
     fun getbasicQuestions(): MutableList<Questions> {
         val basicProgramming = mutableListOf<Questions>()
 

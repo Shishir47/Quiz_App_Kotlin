@@ -44,10 +44,14 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var questionsTimer: TextView
     private var countDownTimer: CountDownTimer? = null
     private var categorySelector: String = "0"
+    private var timeSelector: String = "0"
+    private var diffType: String = "0"
     private var questionStarting: Int = 0
     private var questionsEnding: Int = 0
     private lateinit var categoryQst: TextView
     private var countTotal: Int = 0
+    private var millsT: Long = 0
+    private lateinit var skipBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,16 +72,19 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         opt4 = findViewById(R.id.opt4)
         questionsTimer = findViewById(R.id.questionTimer)
         categoryQst = findViewById(R.id.category)
+        skipBtn = findViewById(R.id.skipbtn)
         opt1.setOnClickListener(this)
         opt2.setOnClickListener(this)
         opt3.setOnClickListener(this)
         opt4.setOnClickListener(this)
         checkBtn.setOnClickListener(this)
+        skipBtn.setOnClickListener(this)
         askedQuestions.add(0)
         if (intent.hasExtra(Constants.USERNAME)) {
             userName = intent.getStringExtra(Constants.USERNAME)!!
         }
         categorySelector = intent.getStringExtra(Constants.CATEGORYSELCTOR)!!
+        timeSelector = intent.getStringExtra(Constants.TIMESELCTOR)!!
         if (categorySelector == "1") {
             questionsList = Constants.getbasicQuestions()
             questionStarting = 1
@@ -108,6 +115,22 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             questionStarting = 1
             questionsEnding = 22
             categoryQst.text = "Random Pick"
+        }
+        if (timeSelector == "45") {
+            millsT= 46000
+            diffType="Newbie"
+        } else if (categorySelector == "30") {
+            millsT= 31000
+            diffType="Amature"
+        } else if (categorySelector == "20") {
+            millsT= 21000
+            diffType="Expert"
+        } else if (categorySelector == "12") {
+            millsT= 13000
+            diffType="Master"
+        } else{
+            millsT= 9000
+            diffType="Grandmaster"
         }
         nxtQuestion()
     }
@@ -147,6 +170,8 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             Intent(this@QuestionsActivity, Result_Activity::class.java).also {
                 it.putExtra(Constants.USERNAME, userName)
                 it.putExtra(Constants.SCORE, score.toString())
+                it.putExtra(Constants.CATEGORYSELCTOR, categoryQst.text)
+                it.putExtra(Constants.DIFFSELECTOR, diffType)
                 it.putExtra(Constants.TOTALQUEST, (questionCounter - 1).toString())
                 startActivity(it)
                 finish()
@@ -157,7 +182,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun startTimer() {
         if (countDownTimer == null) {
-            countDownTimer = object : CountDownTimer(11000, 1000) {
+            countDownTimer = object : CountDownTimer(millsT, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     questionsTimer.text = "Time Left: ${millisUntilFinished / 1000}"
                 }
@@ -217,6 +242,11 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     nxtQuestion()
                 }
                 selectedAns = 0
+            }
+            R.id.skipbtn -> {
+                for (i in 0 until 20-questionCounter+2){
+                    nxtQuestion()
+                }
             }
         }
     }

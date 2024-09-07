@@ -138,5 +138,13 @@
             android:layout_marginTop="15dp"
             android:minHeight="50dp"
             android:text="@string/check" />
+
+        <Button
+            android:id="@+id/skipbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:minHeight="50dp"
+            android:text="@string/skip_other_questions" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>
