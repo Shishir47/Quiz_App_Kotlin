@@ -1,5 +1,6 @@
 package com.shishir.quizapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.firestore.FirebaseFirestore
+import com.shishir.quizapp.MainActivity
 import com.shishir.quizapp.R
 import com.shishir.quizapp.utils.Constants
 
@@ -26,6 +28,9 @@ class Result_Activity : AppCompatActivity() {
     private var catg=" "
     private var percentageScore: Double= 0.0
     private lateinit var scoreTotal: String
+    private lateinit var userName: String
+    private lateinit var exit: Button
+    private lateinit var showLdb: Button
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +45,15 @@ class Result_Activity : AppCompatActivity() {
         score = findViewById(R.id.score)
         finish = findViewById(R.id.resultBtn)
         submission = findViewById(R.id.submission)
+        exit = findViewById(R.id.exitToHome)
+        showLdb = findViewById(R.id.showLdb)
         diffType= intent.getStringExtra(Constants.DIFFSELECTOR)!!
         catg= intent.getStringExtra(Constants.CATEGORYSELCTOR)!!
         if (intent.hasExtra(Constants.USERNAME)) {
             uName.text = ("Name: ${intent.getStringExtra(Constants.USERNAME)!!}\nCategory: $catg \n" +
                     "Difficulty: $diffType")
+            userName= intent.getStringExtra(Constants.USERNAME)!!
+
         }
 
         val value:Double= (intent.getStringExtra(Constants.SCORE)!!).toDouble()
@@ -56,18 +65,28 @@ class Result_Activity : AppCompatActivity() {
             Log.d("ResultActivity", "Finish button clicked")
             saveToDataBase()
         }
-
+        exit.setOnClickListener {
+            Intent(this@Result_Activity, MainActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
+        }
+        showLdb.setOnClickListener {
+            Intent(this@Result_Activity, HistoryLB::class.java).also {
+                startActivity(it)
+            }
+        }
     }
 
     private fun saveToDataBase() {
-        val uNameData = uName.text.toString()
         val saveData = mutableMapOf<String, Any>()
-        saveData.put(CANDIDATENAME, uNameData)
+        saveData.put(CANDIDATENAME, userName)
         saveData.put(CANDIDATESCORE, scoreTotal)
         saveData.put(DIFFSELECTOR, diffType)
+        saveData.put(CATEGORYSELCTOR, catg)
+        val docName:String= (userName+" "+diffType+" "+catg)
 
-
-        db.collection("Candidate_Data").document(uNameData).set(saveData)
+        db.collection("Candidate_Data").document(docName).set(saveData)
             .addOnSuccessListener {
                 submission.text = getString(R.string.submission_successfully)
             }.addOnFailureListener { e ->
